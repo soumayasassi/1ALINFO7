@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import Products from './components/Products';
 
 function App() {
   const expression = <p> 1 + 1 = {1 + 1} </p>;
@@ -14,7 +15,7 @@ function App() {
   const max = numbers.reduce((a, b) => b > a ? b : a)
   return (
     <div className="App">
-      {expression}
+      {/* {expression}
       {nom}--{prenom}
       {photo} <br></br>
       {user.nom}--{user.prenom}
@@ -23,7 +24,9 @@ function App() {
       {numbers.map((number, index) => (
         <li key={index}>{number}</li>
       ))}
-      <h2> Maximum : {max} </h2> 
+      <h2> Maximum : {max} </h2>  */}
+      {/* <Welcome nom={name}></Welcome> */}
+      <Products/>
     </div>
   );
 }
