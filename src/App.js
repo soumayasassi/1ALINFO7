@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  const expression = <p> 1 + 1 = {1 + 1} </p>;
+  var nom = <h2> Foulen </h2>;
+  var prenom = <h2> Ben Foulen </h2>;
+  const photo = (
+    <img src="logo192.png" alt="reactlogo" width="100px" height="100px" />
+  );
+  const user = { prenom: "Foulen", nom: "Ben Foulen" };
+  var myStyle = { fontSize: 100, color: "#FF0000" };
+  const numbers = [7, 12, 25, 4, 5]
+  const max = numbers.reduce((a, b) => b > a ? b : a)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {expression}
+      {nom}--{prenom}
+      {photo} <br></br>
+      {user.nom}--{user.prenom}
+      <h1 style={myStyle}>Bonjour</h1>
+      <span className="CSS-span">CSS</span>
+      {numbers.map((number, index) => (
+        <li key={index}>{number}</li>
+      ))}
+      <h2> Maximum : {max} </h2> 
     </div>
   );
 }
