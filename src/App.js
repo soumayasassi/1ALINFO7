@@ -1,6 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
+
 import Products from './components/Products';
+import WelcomeF from "./components/WelcomeF";
+ import Binding from "./ExemplesCours/Binding"
+ 
 
 function App() {
   const expression = <p> 1 + 1 = {1 + 1} </p>;
@@ -25,8 +29,10 @@ function App() {
         <li key={index}>{number}</li>
       ))}
       <h2> Maximum : {max} </h2>  */}
-      {/* <Welcome nom={name}></Welcome> */}
-      <Products/>
+     {/*<CycleDeVie favCol="yellow"/> 
+     <Products></Products> 
+     <WelcomeF></WelcomeF>*/}
+     <Binding></Binding>
     </div>
   );
 }

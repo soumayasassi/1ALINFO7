@@ -1,8 +1,12 @@
+import { useState } from "react";
+
 function WelcomeF () {
+    const[txt, setTxt] = useState("bjr")
+    
     return ( 
         <div>
             Welcome fonctionelle 
-        </div>
+{txt}        </div>
      );
 }
 
