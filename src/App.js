@@ -4,6 +4,7 @@ import "./App.css";
 import Products from './components/Products';
 import WelcomeF from "./components/WelcomeF";
  import Binding from "./ExemplesCours/Binding"
+import ProductsF from "./components/ProductsF";
  
 
 function App() {
@@ -31,8 +32,9 @@ function App() {
       <h2> Maximum : {max} </h2>  */}
      {/*<CycleDeVie favCol="yellow"/> 
      <Products></Products> 
-     <WelcomeF></WelcomeF>*/}
-     <Binding></Binding>
+     <WelcomeF></WelcomeF>
+     <Binding></Binding>*/}
+     <ProductsF></ProductsF>
     </div>
   );
 }
