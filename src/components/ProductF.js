@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Row, Col, Card, Button } from "react-bootstrap";
 function ProductF (props) {
     const [product,setProduct] = useState(props.product)
+    const Myclass = product.like >5 ? "bestProduct" : "text-center"
     const addLike = () => 
     {
-        
+        setProduct({...product, like:product.like+1})
+       
     }
     return (<Card
         style={{ width: "18rem" }}
-        className="text-center"
+        className={Myclass}
         border="secondary"
       >
         <Card.Header>
@@ -34,7 +36,8 @@ function ProductF (props) {
             <Col md={6}>
               <Button
                 variant="info"
-                
+                disabled={product.quantity===0}
+                onClick={()=> props.buyFunction(product)}
                 
               >
                 {" "}
