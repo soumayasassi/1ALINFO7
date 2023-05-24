@@ -1,36 +1,61 @@
-import { Row, Col, Card, Button, Alert } from "react-bootstrap";
-import products from "../products.json"
-import { useEffect, useState } from "react";
-function ProductsF() {
-    const [show, setShow] = useState(false)
-    const [visible, setVisible] = useState(false)
-     const buy = (product) =>
-     {
-product.quantity -- ; 
-setShow(true)
-setTimeout(() => {
-    setShow(false)
-  }, 2000);
-     }
+import products from "../products.json"; 
+import ProductFunc from './ProductF';
+import { Container ,Row ,Col } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Alert } from 'react-bootstrap';
+ 
+function ProductsF () {
+  const [show,setShow] =useState(false);
+  const [visible,setVisible] =useState(false);
+  useEffect(()=>
+  {
+    setVisible(true)
+    setTimeout(() =>
+    {
+      setVisible(false)
+  },3000)
+  },[]
 
-     useEffect(()=> {
-        setVisible(true)
-        setTimeout(() => {
-            setVisible(false)
-          }, 3000);
-     },[])
-    return ( <>
-     {visible && <Alert> Hey Welcome ...</Alert>}
-    <Row>
-          {products.map((p) => (
+  )
+    const buy = (product) => {
+        product.quantity --;
+        setShow(true)
+        setTimeout(() =>
+          {
+            setShow(false)
+          },1000
+        )
+       };
+    return ( 
+
+        <Container style={{ marginTop: "30px" }}>
+      {visible && (
+          <Alert variant="success">
+            <Alert.Heading>
+              Hey, Welcome To Our Shop <strong> MyStore </strong>{" "}
+            </Alert.Heading>
+            <p>
+              Thank you for choosing our store, we hope you enjoy your shopping
+              experience!
+            </p>
+            <hr />
+          </Alert>
+        )}
+        <Row>
+          {products.map((product) => (
             <Col md={4}>
-              <ProductsF product={p} buyFunction={buy} ></ProductsF>
+              <ProductFunc product={product} buyFunction={buy}></ProductFunc>
             </Col>
           ))}
         </Row>
-        {show && <Alert>You Bought an item </Alert>}
-       
-    </> );
+        {show && (
+          <Alert style={{ marginTop: "30px" }} variant="primary">
+            
+            You bought an Item 
+          </Alert>
+        )}
+      </Container>
+     );
 }
 
 export default ProductsF;
