@@ -25,7 +25,7 @@ render() {
     return (
       <div>
         <button onClick={this.handleClick}>Click Me!</button>
-        <p>Number of Times Clicked = {this.state.numOfClicks}</p>
+        <p>I  Clicked = {this.state.numOfClicks} Times</p>
       </div>
     )
   }

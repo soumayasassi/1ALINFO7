@@ -1,36 +1,39 @@
-import { Row, Col, Card, Button, Alert } from "react-bootstrap";
-import products from "../products.json"
 import { useEffect, useState } from "react";
+import products from "../products.json";
+import ProductF from "./ProductF";
+import { Row, Col, Alert } from "react-bootstrap";
 function ProductsF() {
-    const [show, setShow] = useState(false)
-    const [visible, setVisible] = useState(false)
-     const buy = (product) =>
-     {
-product.quantity -- ; 
-setShow(true)
-setTimeout(() => {
-    setShow(false)
-  }, 2000);
-     }
+  const [show, setShow] = useState(false);
+  
+  const buyparent = (p) => {
+    p.quantity--;
+    console.log(p.quantity)
+    setShow(true)
+        setTimeout(() =>
+          {
+            setShow(false)
+          },1000
+        )
+  };
 
-     useEffect(()=> {
-        setVisible(true)
-        setTimeout(() => {
-            setVisible(false)
-          }, 3000);
-     },[])
-    return ( <>
-     {visible && <Alert> Hey Welcome ...</Alert>}
-    <Row>
-          {products.map((p) => (
-            <Col md={4}>
-              <ProductsF product={p} buyFunction={buy} ></ProductsF>
-            </Col>
-          ))}
-        </Row>
-        {show && <Alert>You Bought an item </Alert>}
-       
-    </> );
+  return (
+    <>
+      {" "}
+      <Row>
+        {products.map((p) => (
+          <Col md={4}>
+            <ProductF product={p} buy={buyparent}></ProductF>
+          </Col>
+        ))}
+      </Row>
+     {show && (
+           <Alert style={{ marginTop: "30px" }} variant="primary">
+             
+             You bought an Item 
+           </Alert>
+         )} 
+    </>
+  );
 }
 
 export default ProductsF;
