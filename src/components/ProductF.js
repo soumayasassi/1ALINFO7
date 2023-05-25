@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Row, Col, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 function ProductF(props) {
   const [product, setProduct] = useState(props.product);
   const myclass = product.like > 5 ? "bestProduct" : "text-center";
@@ -17,7 +18,7 @@ function ProductF(props) {
         />
       </Card.Header>
       <Card.Body>
-        <Card.Title> {product.name}</Card.Title>
+        <Card.Title><Link to={`/products/${product.name}`}>{product.name}</Link> </Card.Title>
         <Card.Text>Quantity:{product.quantity} </Card.Text>
         <Card.Text> Price : {product.price} dt </Card.Text>
         <Card.Text>Like : {product.like} </Card.Text>
