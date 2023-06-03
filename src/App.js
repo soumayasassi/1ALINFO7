@@ -15,22 +15,26 @@ import {
 import ProductLayout from "./components/routing/ProductLayout";
 import About from "./components/routing/About";
 import Contact from "./components/routing/Contact";
-import Navbar from "./components/routing/Navbar";
 import React, { Suspense } from "react";
 import NotFound from "./components/NotFounds";
 import NavigationBar from "./components/NavigationBar";
+import ProductDetailsC from "./consomation/ProductDetailsC"
 
-const Products = React.lazy(() => import("./components/ProductsF"));
-const ProductDetails = React.lazy(() => import("./components/ProductsDetails"));
-const NewProduct  =  React.lazy(() => import("./components/routing/newproduct"));
 
+ import AddProduct from "./consomation/AddProduct";
+import NavigBar from "./consomation/NavigBar";
+import UpdateProduct from "./consomation/UpdateProduct";
+const ProductsC = React.lazy(()=> import('./consomation/ProductsC'))
+const Navbar = React.lazy(()=> import('./components/routing/Navbar'))
+//const ProductDetailsC = React.lazy(()=> import('./consomation/ProductDetailsC'))
 function App() {
   const renderLoader = () => <p>Loading....</p>;
   return (
     <div>
       {/* <ProductsF></ProductsF> */}
       <NavigationBar />
-     <Suspense fallback={renderLoader()}>
+      <Suspense fallback={renderLoader()}>
+     
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
@@ -38,14 +42,16 @@ function App() {
           
 
           <Route path="/products">
-          <Route path="list" element={<Products />} />
-          <Route path="newproduct" element={<NewProduct />} />
-          <Route path=":name" element={<ProductDetails />} />
+          <Route path="list" element={<ProductsC />} />
+          <Route path="new" element={<AddProduct />} />
+          <Route path="update/:id" element={<UpdateProduct />} />
+          <Route path=":id/:like" element={<ProductDetailsC />} />
         </Route>
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        </Suspense>
+        </Suspense> 
+        
     </div>
   );
 }
