@@ -3,7 +3,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectCountAll } from '../redux/cartSlices';
 function NavigBar() {
+  const CartNumber = useSelector(selectCountAll);
   return (
     <Navbar bg="light" variant="light">
         <Container>
@@ -12,6 +15,8 @@ function NavigBar() {
             
             <Nav.Link as={NavLink} to="/products/list " style={({isActive})=>({textDecoration: isActive && 'underline'})}>Products</Nav.Link>
             <Nav.Link as={NavLink} to="/products/new" style={({isActive})=>({textDecoration:isActive && 'underline'})}>Add New Product</Nav.Link>
+            <Nav.Link as={NavLink} to="/cart" style={({isActive})=>({textDecoration:isActive && 'underline'})}>Panier ({CartNumber})</Nav.Link>
+
           </Nav>
         </Container>
       </Navbar>

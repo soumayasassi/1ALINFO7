@@ -24,15 +24,20 @@ import ProductDetailsC from "./consomation/ProductDetailsC"
  import AddProduct from "./consomation/AddProduct";
 import NavigBar from "./consomation/NavigBar";
 import UpdateProduct from "./consomation/UpdateProduct";
+import Counter from "./redux/Counter";
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "./redux/ProductsSlice";
 const ProductsC = React.lazy(()=> import('./consomation/ProductsC'))
 const Navbar = React.lazy(()=> import('./components/routing/Navbar'))
+const Cart = React.lazy(() => import("./consomation/Cart"));
 //const ProductDetailsC = React.lazy(()=> import('./consomation/ProductDetailsC'))
 function App() {
+  const dispatch = useDispatch()
   const renderLoader = () => <p>Loading....</p>;
   return (
     <div>
       {/* <ProductsF></ProductsF> */}
-      <NavigationBar />
+      <NavigBar />
       <Suspense fallback={renderLoader()}>
      
         <Routes>
@@ -42,15 +47,17 @@ function App() {
           
 
           <Route path="/products">
-          <Route path="list" element={<ProductsC />} />
+          <Route path="list" loader={dispatch(fetchProducts())} element={<ProductsC />} />
           <Route path="new" element={<AddProduct />} />
           <Route path="update/:id" element={<UpdateProduct />} />
           <Route path=":id/:like" element={<ProductDetailsC />} />
         </Route>
+        <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        </Suspense> 
+        </Suspense>  
+        {/* <Counter></Counter>*/}
         
     </div>
   );

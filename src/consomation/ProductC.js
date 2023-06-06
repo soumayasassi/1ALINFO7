@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { deleteProductReducer } from "../redux/ProductsSlice";
+import { useDispatch } from "react-redux";
+import { increment } from "../redux/cartSlices";
 
 function ProductC(props) {
   const [product, setProduct] = useState(props.product);
+  const dispatch = useDispatch()
   const myclass = product.like > 5 ? "bestProduct" : "text-center";
   const addLike = () => {
     setProduct({ ...product, like: product.like + 1 });
@@ -53,9 +57,17 @@ function ProductC(props) {
             </Button>
             <Button
               variant="danger"
-              onClick={() => props.deleteProd(product.id)}
+              onClick={() => dispatch(deleteProductReducer(product.id))}
             >
               Delete Product
+            </Button>
+          </Col>
+        </Row>
+        <br></br>
+        <Row>
+          <Col md={12}>
+            <Button variant="success" onClick={() => dispatch(increment(product))}>
+              ADD TO CART +
             </Button>
           </Col>
         </Row>

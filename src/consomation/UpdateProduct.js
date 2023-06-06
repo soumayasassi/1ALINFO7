@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { editProduct, getallProducts } from "../service/api";
+import { useDispatch } from "react-redux";
+import { updateProductReducer } from "../redux/ProductsSlice";
 export default function UpdateProduct() {
 const navigate = useNavigate();
+const dispatch = useDispatch();
 const param = useParams();
 const [product, setProduct] = useState({
 id: param.id,
@@ -15,13 +18,15 @@ quantity: 0,
 description: "",
 });
 const { id, name, price, img, like, quantity, description } = product;
+
 useEffect(() => {
-getProduct();
-}, []);
-const getProduct = async () => {
-const response = await getallProducts(param.id);
-setProduct(response.data);
-};
+    getProduct();
+  }, []);
+
+  const getProduct = async () => {
+    const response = await getallProducts(param.id);
+    setProduct(response.data);
+  };
 const onValueChange = (e) => {
 setProduct({ ...product, [e.target.name]: e.target.value });
 };
@@ -86,7 +91,7 @@ const onFileHandle = (e) => {
     name="img"
 />
 </Form.Group>
-<Button variant="primary" onClick={() => UpdateP()}>
+<Button variant="primary" onClick={() => dispatch((updateProductReducer(product)))}>
 Update Product
 </Button>
 <Button onClick={() => navigate("/products")} variant="secondary">

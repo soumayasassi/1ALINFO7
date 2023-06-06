@@ -3,19 +3,13 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
 import ProductC from "./ProductC";
 import { deleteProduct, getallProducts } from "../service/api";
+import { useSelector } from "react-redux";
 function ProductsC() {
-  const [products, setProducts] = useState([]);
+  const products = useSelector((state)=>state.products.products)
   const [show, setShow] = useState(false);
   const [visible, setVisible] = useState(false);
   //getproducts
-  useEffect(() => {
-    getProducts();
-  }, []);
-  const getProducts = async () => {
-    const response = await getallProducts();
-    console.log(response);
-    setProducts(response.data);
-  };
+
   useEffect(() => {
     setVisible(true);
     setTimeout(() => {
@@ -30,13 +24,13 @@ function ProductsC() {
     }, 1000);
   };
 
-  const deleteProd = async (id) => {
+ /* const deleteProd = async (id) => {
     const result = window.confirm("Are you sure you want to delete?");
     if (result) {
       await deleteProduct(id);
       getProducts();
     }
-  };
+  };*/
   return (
     <Container style={{ marginTop: "30px" }}>
       {visible && (
@@ -57,7 +51,7 @@ function ProductsC() {
             <ProductC
               product={product}
               buyFunction={buy}
-              deleteProd={deleteProd}
+              
             ></ProductC>
           </Col>
         ))}
