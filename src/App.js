@@ -1,6 +1,12 @@
 import logo from "./logo.svg";
 import "./App.css";
 
+import Products from './components/Products';
+import WelcomeF from "./components/WelcomeF";
+ import Binding from "./ExemplesCours/Binding"
+import ProductsF from "./components/ProductsF";
+ 
+
 function App() {
   const expression = <p> 1 + 1 = {1 + 1} </p>;
   var nom = <h2> Foulen </h2>;
@@ -14,7 +20,7 @@ function App() {
   const max = numbers.reduce((a, b) => b > a ? b : a)
   return (
     <div className="App">
-      {expression}
+      {/* {expression}
       {nom}--{prenom}
       {photo} <br></br>
       {user.nom}--{user.prenom}
@@ -23,7 +29,12 @@ function App() {
       {numbers.map((number, index) => (
         <li key={index}>{number}</li>
       ))}
-      <h2> Maximum : {max} </h2> 
+      <h2> Maximum : {max} </h2>  */}
+     {/*<CycleDeVie favCol="yellow"/> 
+     <Products></Products> 
+     <WelcomeF></WelcomeF>
+     <Binding></Binding>*/}
+     <ProductsF></ProductsF>
     </div>
   );
 }
